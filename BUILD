@@ -1,6 +1,6 @@
 package(default_visibility = [
     "//stream_utils:__subpackages__",
-    "//tcp_server:__subpackages__",
+    "//jog_controller_server:__subpackages__",
 ])
 
 load("@com_google_protobuf//:protobuf.bzl", "py_proto_library")
