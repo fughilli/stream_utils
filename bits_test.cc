@@ -7,6 +7,20 @@
 namespace util {
 namespace {
 
+TEST(BitsTest, AllOnesReturnsExpectedMask) {
+  EXPECT_EQ(AllOnes<uint8_t>(), 0xff);
+  EXPECT_EQ(AllOnes<uint16_t>(), 0xffff);
+  EXPECT_EQ(AllOnes<uint32_t>(), 0xffffffff);
+  EXPECT_EQ(AllOnes<uint64_t>(), 0xffffffffffffffff);
+}
+
+TEST(BitsTest, LargestSingleBitReturnsExpectedMask) {
+  EXPECT_EQ(LargestSingleBit<uint8_t>(), 0x80);
+  EXPECT_EQ(LargestSingleBit<uint16_t>(), 0x8000);
+  EXPECT_EQ(LargestSingleBit<uint32_t>(), 0x80000000);
+  EXPECT_EQ(LargestSingleBit<uint64_t>(), 0x8000000000000000);
+}
+
 TEST(BitsTest, BitRunGivesExpectedMask) {
   EXPECT_EQ(BitRun<uint8_t>(0), 0u);
   EXPECT_EQ(BitRun<uint16_t>(0), 0u);
@@ -42,6 +56,16 @@ TEST(BitsTest, GetFieldReturnsExpectedMask) {
   EXPECT_EQ(GetField<uint32_t>(0xffffffff, 0, 8), 0x0u);
   EXPECT_EQ(GetField<uint32_t>(0x1234abcd, 12, 16), 0x234u);
   EXPECT_EQ(GetField<uint32_t>(0x1234abcd, 12, 16), 0x234u);
+}
+
+TEST(BitsTest, CountLeadingZeroesReturnsExpectedValue) {
+  EXPECT_EQ(CountLeadingZeros<uint8_t>(0x00), 8);
+  EXPECT_EQ(CountLeadingZeros<uint8_t>(0x80), 0);
+  EXPECT_EQ(CountLeadingZeros<uint8_t>(0x0f), 4);
+  EXPECT_EQ(CountLeadingZeros<uint8_t>(0x10), 3);
+
+  EXPECT_EQ(CountLeadingZeros<uint64_t>(0x0000100000000000ull), 19);
+  EXPECT_EQ(CountLeadingZeros<uint64_t>(0x0003ffffff000000ull), 14);
 }
 
 }  // namespace
