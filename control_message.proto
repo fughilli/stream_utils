@@ -19,4 +19,6 @@ message Control {
   optional int32 value = 1;
   optional Axis axis = 2;
   optional Multiplier multiplier = 3;
+  optional int32 key_pressed = 4;
+  optional int32 key_released = 5;
 }
