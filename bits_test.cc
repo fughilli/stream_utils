@@ -68,5 +68,21 @@ TEST(BitsTest, CountLeadingZeroesReturnsExpectedValue) {
   EXPECT_EQ(CountLeadingZeros<uint64_t>(0x0003ffffff000000ull), 14);
 }
 
+TEST(BitsTest, CountLeadingZeroesFieldReturnsExpectedValue) {
+  EXPECT_EQ(CountLeadingZerosField<uint8_t>(0x00, 8, 0), 8);
+  EXPECT_EQ(CountLeadingZerosField<uint8_t>(0x80, 4, 0), 4);
+  EXPECT_EQ(CountLeadingZerosField<uint8_t>(0x0f, 5, 1), 2);
+  EXPECT_EQ(CountLeadingZerosField<uint8_t>(0x10, 4, 4), 3);
+
+  EXPECT_EQ(CountLeadingZerosField<uint64_t>(0x0000100000000000ull, 64, 0), 19);
+  EXPECT_EQ(CountLeadingZerosField<uint64_t>(0x0003ffffff000000ull, 64, 0), 14);
+}
+
+TEST(BitsTest, CountTrailingOnesFieldReturnsExpectedValue) {
+  EXPECT_EQ(CountTrailingOnesField<uint16_t>(0x0000, 16, 0), 0);
+  EXPECT_EQ(CountTrailingOnesField<uint16_t>(0x00FF, 16, 0), 8);
+  EXPECT_EQ(CountTrailingOnesField<uint16_t>(0xFC3F, 8, 2), 4);
+}
+
 }  // namespace
 }  // namespace util
