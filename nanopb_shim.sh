@@ -14,11 +14,11 @@ out_header=$3
 out_source=$4
 
 output=$($compile_command --strip-path \
-  --library-include-format='#include "%s"' $in_proto 2>&1)
+  --library-include-format='#include "%s"' --extension=".nanopb" $in_proto 2>&1)
 
-intermediate_header=$(echo $output | \
+intermediate_header=$(echo $output |
   sed -n 's/^Writing\ to\ \(.*\)\ and.*$/\1/p')
-intermediate_source=$(echo $output | \
+intermediate_source=$(echo $output |
   sed -n 's/^Writing\ to\ .*\ and\(.*\)$/\1/p')
 
 mv $intermediate_header $out_header

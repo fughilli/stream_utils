@@ -3,7 +3,7 @@
 #include "base64_stream.h"
 #include "pb_stream.h"
 #include "stream.h"
-#include "stream_utils/control_message.pb.h"
+#include "stream_utils/control_message.nanopb.h"
 
 int main() {
   util::OstreamAdapter oa(&std::cout);

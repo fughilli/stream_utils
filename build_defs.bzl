@@ -5,7 +5,7 @@ def nanopb_library(name, srcs = []):
     native.genrule(
         name = name + "_nanopb_gen",
         srcs = srcs,
-        outs = [name + ".pb.h", name + ".pb.c"],
+        outs = [name + ".nanopb.h", name + ".nanopb.c"],
         cmd = ("$(location :nanopb_shim) " +
                "$(location //nanopb/generator:nanopb_generator) $(SRCS) " +
                "$(OUTS)"),
@@ -14,8 +14,8 @@ def nanopb_library(name, srcs = []):
 
     native.cc_library(
         name = name,
-        srcs = [name + ".pb.c"],
-        hdrs = [name + ".pb.h"],
+        srcs = [name + ".nanopb.c"],
+        hdrs = [name + ".nanopb.h"],
         deps = [
             "//nanopb",
         ],

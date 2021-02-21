@@ -1,9 +1,10 @@
 package(default_visibility = [
-    "//stream_utils:__subpackages__",
+    "//C3P3-EmbeddedGames-Simulator:__subpackages__",
     "//jog_controller_server:__subpackages__",
+    "//stream_utils:__subpackages__",
 ])
 
-load("@com_google_protobuf//:protobuf.bzl", "py_proto_library")
+load("@com_google_protobuf//:protobuf.bzl", "py_proto_library", "cc_proto_library")
 load("//stream_utils:build_defs.bzl", "nanopb_library")
 
 cc_library(
@@ -80,6 +81,11 @@ sh_binary(
 
 nanopb_library(
     name = "control_message",
+    srcs = ["control_message.proto"],
+)
+
+cc_proto_library(
+    name = "control_message_cc_proto",
     srcs = ["control_message.proto"],
 )
 
