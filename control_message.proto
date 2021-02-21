@@ -2,12 +2,13 @@ syntax = "proto2";
 
 message Control {
   enum Axis {
-    AXIS_X = 0;
-    AXIS_Y = 1;
-    AXIS_Z = 2;
-    AXIS_4 = 3;
-    AXIS_5 = 4;
-    AXIS_6 = 5;
+    AXIS_NONE = 0;
+    AXIS_X = 1;
+    AXIS_Y = 2;
+    AXIS_Z = 3;
+    AXIS_4 = 4;
+    AXIS_5 = 5;
+    AXIS_6 = 6;
   }
 
   enum Multiplier {
@@ -21,4 +22,7 @@ message Control {
   optional Multiplier multiplier = 3;
   optional int32 key_pressed = 4;
   optional int32 key_released = 5;
+
+  optional bool feedhold = 6;
+  optional bool estop = 7;
 }
